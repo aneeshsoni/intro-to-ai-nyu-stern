@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="10.5.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="10.5.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="10.5.000" expanded="true" height="68" name="Retrieve trip_advisor_embedding" width="90" x="45" y="289">
+        <parameter key="repository_entry" value="//Local Repository/data/trip_advisor_embedding"/>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="10.5.000" expanded="true" height="103" name="Subprocess" width="90" x="179" y="289">
+        <process expanded="true">
+          <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes" width="90" x="112" y="136">
+            <parameter key="type" value="include attributes"/>
+            <parameter key="attribute_filter_type" value="a subset"/>
+            <parameter key="select_attribute" value=""/>
+            <parameter key="select_subset" value="review_embed_1␞review_embed_2␞review_embed_3␞review_embed_4␞review_embed_5␞review_embed_6␞review_embed_7␞review_embed_8␞review_embed_9␞review_embed_10␞review_embed_11␞review_embed_12␞review_embed_13␞review_embed_14␞review_embed_15␞review_embed_16␞review_embed_17␞review_embed_18␞review_embed_19␞review_embed_20␞review_embed_21␞review_embed_22␞review_embed_23␞review_embed_24␞review_embed_25␞review_embed_26␞review_embed_27␞review_embed_28␞review_embed_29␞review_embed_30␞review_embed_31␞review_embed_32␞review_embed_33␞review_embed_34␞review_embed_35␞review_embed_36␞review_embed_37␞review_embed_38␞review_embed_39␞review_embed_40␞review_embed_41␞review_embed_42␞review_embed_43␞review_embed_44␞review_embed_45␞review_embed_46␞review_embed_47␞review_embed_48␞review_embed_49␞review_embed_50␞review_embed_51␞review_embed_52␞review_embed_53␞review_embed_54␞review_embed_55␞review_embed_56␞review_embed_57␞review_embed_58␞review_embed_59␞review_embed_60␞review_embed_61␞review_embed_62␞review_embed_63␞review_embed_64␞review_embed_65␞review_embed_66␞review_embed_67␞review_embed_68␞review_embed_69␞review_embed_70␞review_embed_71␞review_embed_72␞review_embed_73␞review_embed_74␞review_embed_75␞review_embed_76␞review_embed_77␞review_embed_78␞review_embed_79␞review_embed_80␞review_embed_81␞review_embed_82␞review_embed_83␞review_embed_84␞review_embed_85␞review_embed_86␞review_embed_87␞review_embed_88␞review_embed_89␞review_embed_90␞review_embed_91␞review_embed_92␞review_embed_93␞review_embed_94␞review_embed_95␞review_embed_96␞review_embed_97␞review_embed_98␞review_embed_99␞review_embed_100␞review_embed_101␞review_embed_102␞review_embed_103␞review_embed_104␞review_embed_105␞review_embed_106␞review_embed_107␞review_embed_108␞review_embed_109␞review_embed_110␞review_embed_111␞review_embed_112␞review_embed_113␞review_embed_114␞review_embed_115␞review_embed_116␞review_embed_117␞review_embed_118␞review_embed_119␞review_embed_120␞review_embed_121␞review_embed_122␞review_embed_123␞review_embed_124␞review_embed_125␞review_embed_126␞review_embed_127␞review_embed_128␞review_embed_129␞review_embed_130␞review_embed_131␞review_embed_132␞review_embed_133␞review_embed_134␞review_embed_135␞review_embed_136␞review_embed_137␞review_embed_138␞review_embed_139␞review_embed_140␞review_embed_141␞review_embed_142␞review_embed_143␞review_embed_144␞review_embed_145␞review_embed_146␞review_embed_147␞review_embed_148␞review_embed_149␞review_embed_150␞review_embed_151␞review_embed_152␞review_embed_153␞review_embed_154␞review_embed_155␞review_embed_156␞review_embed_157␞review_embed_158␞review_embed_159␞review_embed_160␞review_embed_161␞review_embed_162␞review_embed_163␞review_embed_164␞review_embed_165␞review_embed_166␞review_embed_167␞review_embed_168␞review_embed_169␞review_embed_170␞review_embed_171␞review_embed_172␞review_embed_173␞review_embed_174␞review_embed_175␞review_embed_176␞review_embed_177␞review_embed_178␞review_embed_179␞review_embed_180␞review_embed_181␞review_embed_182␞review_embed_183␞review_embed_184␞review_embed_185␞review_embed_186␞review_embed_187␞review_embed_188␞review_embed_189␞review_embed_190␞review_embed_191␞review_embed_192␞review_embed_193␞review_embed_194␞review_embed_195␞review_embed_196␞review_embed_197␞review_embed_198␞review_embed_199␞review_embed_200␞review_embed_201␞review_embed_202␞review_embed_203␞review_embed_204␞review_embed_205␞review_embed_206␞review_embed_207␞review_embed_208␞review_embed_209␞review_embed_210␞review_embed_211␞review_embed_212␞review_embed_213␞review_embed_214␞review_embed_215␞review_embed_216␞review_embed_217␞review_embed_218␞review_embed_219␞review_embed_220␞review_embed_221␞review_embed_222␞review_embed_223␞review_embed_224␞review_embed_225␞review_embed_226␞review_embed_227␞review_embed_228␞review_embed_229␞review_embed_230␞review_embed_231␞review_embed_232␞review_embed_233␞review_embed_234␞review_embed_235␞review_embed_236␞review_embed_237␞review_embed_238␞review_embed_239␞review_embed_240␞review_embed_241␞review_embed_242␞review_embed_243␞review_embed_244␞review_embed_245␞review_embed_246␞review_embed_247␞review_embed_248␞review_embed_249␞review_embed_250␞review_embed_251␞review_embed_252␞review_embed_253␞review_embed_254␞review_embed_255␞review_embed_256␞review_embed_257␞review_embed_258␞review_embed_259␞review_embed_260␞review_embed_261␞review_embed_262␞review_embed_263␞review_embed_264␞review_embed_265␞review_embed_266␞review_embed_267␞review_embed_268␞review_embed_269␞review_embed_270␞review_embed_271␞review_embed_272␞review_embed_273␞review_embed_274␞review_embed_275␞review_embed_276␞review_embed_277␞review_embed_278␞review_embed_279␞review_embed_280␞review_embed_281␞review_embed_282␞review_embed_283␞review_embed_284␞review_embed_285␞review_embed_286␞review_embed_287␞review_embed_288␞review_embed_289␞review_embed_290␞review_embed_291␞review_embed_292␞review_embed_293␞review_embed_294␞review_embed_295␞review_embed_296␞review_embed_297␞review_embed_298␞review_embed_299␞review_embed_300␞review_embed_301␞review_embed_302␞review_embed_303␞review_embed_304␞review_embed_305␞review_embed_306␞review_embed_307␞review_embed_308␞review_embed_309␞review_embed_310␞review_embed_311␞review_embed_312␞review_embed_313␞review_embed_314␞review_embed_315␞review_embed_316␞review_embed_317␞review_embed_318␞review_embed_319␞review_embed_320␞review_embed_321␞review_embed_322␞review_embed_323␞review_embed_324␞review_embed_325␞review_embed_326␞review_embed_327␞review_embed_328␞review_embed_329␞review_embed_330␞review_embed_331␞review_embed_332␞review_embed_333␞review_embed_334␞review_embed_335␞review_embed_336␞review_embed_337␞review_embed_338␞review_embed_339␞review_embed_340␞review_embed_341␞review_embed_342␞review_embed_343␞review_embed_344␞review_embed_345␞review_embed_346␞review_embed_347␞review_embed_348␞review_embed_349␞review_embed_350␞review_embed_351␞review_embed_352␞review_embed_353␞review_embed_354␞review_embed_355␞review_embed_356␞review_embed_357␞review_embed_358␞review_embed_359␞review_embed_360␞review_embed_361␞review_embed_362␞review_embed_363␞review_embed_364␞review_embed_365␞review_embed_366␞review_embed_367␞review_embed_368␞review_embed_369␞review_embed_370␞review_embed_371␞review_embed_372␞review_embed_373␞review_embed_374␞review_embed_375␞review_embed_376␞review_embed_377␞review_embed_378␞review_embed_379␞review_embed_380␞review_embed_381␞review_embed_382␞review_embed_383␞review_embed_384␞review_rating"/>
+            <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+          </operator>
+          <operator activated="true" class="blending:set_role" compatibility="10.5.000" expanded="true" height="82" name="Set Role" width="90" x="246" y="136">
+            <list key="set_roles">
+              <parameter key="review_rating" value="label"/>
+            </list>
+          </operator>
+          <operator activated="true" class="blending:split_data" compatibility="10.5.000" expanded="true" height="103" name="Split Data" width="90" x="380" y="136">
+            <enumeration key="partitions">
+              <parameter key="ratio" value="0.8"/>
+              <parameter key="ratio" value="0.2"/>
+            </enumeration>
+            <parameter key="sampling_type" value="automatic"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+          </operator>
+          <connect from_port="in 1" to_op="Select Attributes" to_port="example set input"/>
+          <connect from_op="Select Attributes" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+          <connect from_op="Set Role" from_port="example set output" to_op="Split Data" to_port="example set"/>
+          <connect from_op="Split Data" from_port="partition 1" to_port="out 1"/>
+          <connect from_op="Split Data" from_port="partition 2" to_port="out 2"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+          <portSpacing port="sink_out 3" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="deeplearning:dl4j_sequential_neural_network" compatibility="1.2.001" expanded="true" height="145" name="Deep Learning" width="90" x="313" y="136">
+        <parameter key="epochs" value="50"/>
+        <parameter key="use_miniBatch" value="false"/>
+        <parameter key="batch_size" value="32"/>
+        <parameter key="log_each_epoch" value="true"/>
+        <parameter key="epochs_per_log" value="10"/>
+        <parameter key="optimization_method" value="Stochastic Gradient Descent"/>
+        <parameter key="backpropagation" value="Standard"/>
+        <parameter key="backpropagation_length" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="condition_strategy" value="score improvement"/>
+        <parameter key="patience" value="5"/>
+        <parameter key="minimal_score_improvement" value="0.0"/>
+        <parameter key="best_epoch_score" value="0.01"/>
+        <parameter key="max_iteration_score" value="3.0"/>
+        <parameter key="max_iteration_time" value="10"/>
+        <parameter key="updater" value="Adam"/>
+        <parameter key="learning_rate" value="0.005"/>
+        <parameter key="momentum" value="0.9"/>
+        <parameter key="rho" value="0.95"/>
+        <parameter key="epsilon" value="1.0E-6"/>
+        <parameter key="beta1" value="0.9"/>
+        <parameter key="beta2" value="0.999"/>
+        <parameter key="RMSdecay" value="0.95"/>
+        <parameter key="weight_initialization" value="Normal"/>
+        <parameter key="bias_initialization" value="0.0"/>
+        <parameter key="use_regularization" value="false"/>
+        <parameter key="l1_strength" value="0.1"/>
+        <parameter key="l2_strength" value="0.1"/>
+        <parameter key="cudnn_algo_mode" value="Prefer fastest"/>
+        <parameter key="infer_input_shape" value="true"/>
+        <parameter key="network_type" value="Simple Neural Network"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="true" class="deeplearning:dl4j_dense_layer" compatibility="1.2.001" expanded="true" height="68" name="Add Fully-Connected Layer" width="90" x="246" y="136">
+            <parameter key="neurons" value="32"/>
+            <parameter key="activation_function" value="ReLU (Rectified Linear Unit)"/>
+            <parameter key="use_dropout" value="false"/>
+            <parameter key="dropout_rate" value="0.25"/>
+            <parameter key="overwrite_networks_weight_initialization" value="false"/>
+            <parameter key="weight_initialization" value="Normal"/>
+            <parameter key="overwrite_networks_bias_initialization" value="false"/>
+            <parameter key="bias_initialization" value="0.0"/>
+          </operator>
+          <operator activated="true" class="deeplearning:dl4j_output_layer" compatibility="1.2.001" expanded="true" height="68" name="Add Output Layer" width="90" x="380" y="136">
+            <parameter key="output_type" value="FullyConnected"/>
+            <parameter key="loss_function" value="Multiclass Cross Entropy (Classification)"/>
+            <parameter key="neurons" value="5"/>
+            <parameter key="activation_function" value="Softmax"/>
+            <parameter key="use_dropout" value="false"/>
+            <parameter key="dropout_rate" value="0.25"/>
+            <parameter key="overwrite_networks_weight_initialization" value="false"/>
+            <parameter key="weight_initialization" value="Normal"/>
+            <parameter key="overwrite_networks_bias_initialization" value="false"/>
+            <parameter key="bias_initialization" value="0.0"/>
+          </operator>
+          <connect from_port="in layerArchitecture" to_op="Add Fully-Connected Layer" to_port="layerArchitecture"/>
+          <connect from_op="Add Fully-Connected Layer" from_port="layerArchitecture" to_op="Add Output Layer" to_port="layerArchitecture"/>
+          <connect from_op="Add Output Layer" from_port="layerArchitecture" to_port="out layerArchitecture"/>
+          <portSpacing port="source_in layerArchitecture" spacing="0"/>
+          <portSpacing port="sink_out layerArchitecture" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="10.5.000" expanded="true" height="82" name="Apply Model" width="90" x="447" y="289">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="10.5.000" expanded="true" height="82" name="Performance" width="90" x="514" y="442">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <connect from_op="Retrieve trip_advisor_embedding" from_port="output" to_op="Subprocess" to_port="in 1"/>
+      <connect from_op="Subprocess" from_port="out 1" to_op="Deep Learning" to_port="training set"/>
+      <connect from_op="Subprocess" from_port="out 2" to_op="Apply Model" to_port="unlabelled data"/>
+      <connect from_op="Deep Learning" from_port="model" to_op="Apply Model" to_port="model"/>
+      <connect from_op="Apply Model" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
+      <connect from_op="Performance" from_port="performance" to_port="result 1"/>
+      <connect from_op="Performance" from_port="example set" to_port="result 2"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+    </process>
+  </operator>
+</process>
