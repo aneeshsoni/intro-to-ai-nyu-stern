@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="10.5.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="10.5.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="10.5.000" expanded="true" height="68" name="Retrieve openai" width="90" x="45" y="238">
+        <parameter key="repository_entry" value="//Local Repository/Connections/openai"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="10.5.000" expanded="true" height="68" name="Retrieve Math Example" width="90" x="45" y="136">
+        <parameter key="repository_entry" value="//Local Repository/data/Math Example"/>
+      </operator>
+      <operator activated="true" class="generative_models:send_prompt_openai" compatibility="2.1.001" expanded="true" height="82" name="Send Prompt (OpenAI)" width="90" x="179" y="136">
+        <parameter key="type" value="OpenAI"/>
+        <parameter key="model" value="gpt-3.5-turbo"/>
+        <parameter key="name" value="openai"/>
+        <parameter key="prompt" value="Answer the following question:&#10;&#10;Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?&#10;A: Roger started with 5 balls. 2 cans of 3 tennis balls each is 6 tennis balls. 5 + 6 = 11. The answer is 11.&#10;&#10;Q: [[Question]]&#10;A:"/>
+        <parameter key="max_target_tokens" value="256"/>
+        <parameter key="number_of_parallel_requests" value="10"/>
+        <parameter key="check_price_limit" value="true"/>
+        <parameter key="price_limit" value="10.0"/>
+        <parameter key="price_output_length_factor" value="1.0"/>
+        <parameter key="completion_type" value="Chat Completion"/>
+        <parameter key="temperature" value="0.0"/>
+        <parameter key="top_p" value="1.0"/>
+        <parameter key="frequency_penalty" value="0.0"/>
+        <parameter key="presence_penalty" value="0.0"/>
+        <parameter key="conda_environment" value="rm_genai"/>
+      </operator>
+      <connect from_op="Retrieve openai" from_port="output" to_op="Send Prompt (OpenAI)" to_port="connection"/>
+      <connect from_op="Retrieve Math Example" from_port="output" to_op="Send Prompt (OpenAI)" to_port="data"/>
+      <connect from_op="Send Prompt (OpenAI)" from_port="data" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>

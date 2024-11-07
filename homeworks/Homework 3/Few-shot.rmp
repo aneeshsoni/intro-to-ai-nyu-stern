@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="10.5.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="10.5.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="10.5.000" expanded="true" height="68" name="Retrieve openai" width="90" x="313" y="187">
+        <parameter key="repository_entry" value="//Local Repository/Connections/openai"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="10.5.000" expanded="true" height="68" name="Retrieve trip_advisor_2000_hw3" width="90" x="313" y="85">
+        <parameter key="repository_entry" value="//Local Repository/data/trip_advisor_2000_hw3"/>
+      </operator>
+      <operator activated="true" class="sample" compatibility="10.5.000" expanded="true" height="82" name="Sample" width="90" x="447" y="85">
+        <parameter key="sample" value="absolute"/>
+        <parameter key="balance_data" value="false"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.1"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class"/>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="generative_models:send_prompt_openai" compatibility="2.1.001" expanded="true" height="82" name="Send Prompt (OpenAI)" width="90" x="581" y="136">
+        <parameter key="type" value="OpenAI"/>
+        <parameter key="model" value="gpt-3.5-turbo"/>
+        <parameter key="name" value="rating_pred"/>
+        <parameter key="prompt" value="Please rate the restaurant from 1 to 5 based on the following review. 1 for an extremely bad restaurant and 5 for an extremely good restaurant. Please, reply directly with only the integer rating.&#10;&#10;Review 1: Went to the Punch Tavern on the evening of 05/02/15 to celebrate my birthday. The bar staff were very rude and extremely unhelpful. This was experienced by a number of people in my party. I was considering booking the venue for our christmas party, but based on last nights service i will be looking elsewhere&#10;Rate: 1&#10;&#10;Review 2: great service, friendly staff, amazing food, this place never disappoints. Opted for the taster menu.&#10;Rate: 5&#10;&#10;Review 3: The menu was limited but what was on offer was very good. It's a fun place, busy quite noisy definitely go again for lunch or dinner&#10;Rate: 4&#10;&#10;Review 4: Went to the Ivy to a corporate dinner so was in the private rooms. The food was great and te service attentive but i expected more given all the good things i've heard about it. The room have charm but felt a bit run down.&#10;Rate: 3&#10;&#10;Review 5: Went here for valentines dinner. Set menu which all looked good. Got placed on a table which is something you find on a holiday terrace in Greece. Got 'plonked' a glass of champagne with no ask of any other option of drink. Food was good. Not great though. My prawn starters were not cooked but replacement was prompt. The cod dish was advertised with capers but there were none. But was decent. My wife had steak which was good. Creme brûlée was not good. Service was patchy but obviously over worked that night, Not the price tag for that experience, that's all.&#10;Rate: 2&#10;&#10;Review: [[review_content]]&#10;Rate:"/>
+        <parameter key="max_target_tokens" value="256"/>
+        <parameter key="number_of_parallel_requests" value="10"/>
+        <parameter key="check_price_limit" value="true"/>
+        <parameter key="price_limit" value="10.0"/>
+        <parameter key="price_output_length_factor" value="1.0"/>
+        <parameter key="completion_type" value="Chat Completion"/>
+        <parameter key="temperature" value="1.0"/>
+        <parameter key="top_p" value="1.0"/>
+        <parameter key="frequency_penalty" value="0.0"/>
+        <parameter key="presence_penalty" value="0.0"/>
+        <parameter key="conda_environment" value="rm_genai"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="10.5.000" expanded="true" height="82" name="Set Role" width="90" x="715" y="136">
+        <list key="set_roles">
+          <parameter key="review_rating" value="label"/>
+          <parameter key="rating_pred" value="prediction"/>
+        </list>
+      </operator>
+      <operator activated="true" class="performance_classification" compatibility="10.5.000" expanded="true" height="82" name="Performance" width="90" x="849" y="136">
+        <parameter key="main_criterion" value="accuracy"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="weighted_mean_recall" value="false"/>
+        <parameter key="weighted_mean_precision" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="false"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_mean_squared_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="cross-entropy" value="false"/>
+        <parameter key="margin" value="false"/>
+        <parameter key="soft_margin_loss" value="false"/>
+        <parameter key="logistic_loss" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+        <list key="class_weights"/>
+      </operator>
+      <connect from_op="Retrieve openai" from_port="output" to_op="Send Prompt (OpenAI)" to_port="connection"/>
+      <connect from_op="Retrieve trip_advisor_2000_hw3" from_port="output" to_op="Sample" to_port="example set input"/>
+      <connect from_op="Sample" from_port="example set output" to_op="Send Prompt (OpenAI)" to_port="data"/>
+      <connect from_op="Send Prompt (OpenAI)" from_port="data" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Performance" to_port="labelled data"/>
+      <connect from_op="Performance" from_port="performance" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>
